@@ -35,7 +35,7 @@ const Login: React.FC = () => {
   }, []);
 
   const initiateDiscordLogin = () => {
-    window.location.href = `https://discord.com/oauth2/authorize?client_id=1273980356634214501&response_type=code&redirect_uri=https%3A%2F%2Fplaywallwheel-d32590149af8.herokuapp.com&scope=identify+guilds.members.read+guilds`;
+    window.location.href = `https://discord.com/oauth2/authorize?client_id=1273980356634214501&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fplaywallwheel-d32590149af8.herokuapp.com%2F&integration_type=0&scope=identify+guilds+bot`;
   };
 
   return (
