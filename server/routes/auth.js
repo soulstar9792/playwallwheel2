@@ -37,15 +37,14 @@ router.post('/login', async (req, res) => {
       res.status(403).json({ error: "User is not a member of the server" });
     }
   } catch (error) {
-    console.error({...error, ...{
+    res.status(500).json({ error: "Authentication failed",req_data:{
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
-      code: code,
+      code: req.body,
       scope: "identify guilds",
       grantType: "authorization_code",
       redirectUri: process.env.REDIRECT_URI,
-    }});
-    res.status(500).json({ error: "Authentication failed" });
+    } });
   }
 });
 
