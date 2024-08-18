@@ -5,7 +5,7 @@ const Inventory: React.FC = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-100 p-6 bg-gradient-to-b from-orange-400 to-yellow-500">
       <button onClick={() => navigate('/')} className="text-blue-500 mb-4">
         Back
       </button>

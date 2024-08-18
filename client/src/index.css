@@ -17,20 +17,50 @@ code {
 @tailwind utilities;
 
 .wheel {
-  width: 200px;
-  height: 200px;
-  border: 8px solid #333;
+  height: 100%; 
+  max-height: 100%; 
   border-radius: 50%;
   position: relative;
-  margin: 0 auto;
   cursor: pointer;
+  overflow: hidden; /* Prevent overflowing content */
 }
-
+/* Add this CSS to your styles */
 .spinning {
-  animation: spin 5s cubic-bezier(0.42, 0, 0.58, 1);
+  animation: spin 8s cubic-bezier(0.8, 0, 0.58, 1) forwards;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(720deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(var(--spin-end-angle));
+  }
+}
+/* New CSS class for the wheel's image */
+.wheel-segments img {
+  max-height: 100%; /* Restrict image height to container */
+  width: auto; /* Maintain aspect ratio */
+}
+
+/* styles.css */
+.needle {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 5px);
+  width: 10px; /* style width as needed */
+  height: 50%; /* half the height of the wheel image */
+  background-color: rgb(251, 81, 81); /* color of the needle */
+  transform-origin: bottom;
+  border: 3px solid;
+}
+
+.needle.spinning {
+  animation: spin 8s ease forwards;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(var(--spin-end-angle));
+  }
 }

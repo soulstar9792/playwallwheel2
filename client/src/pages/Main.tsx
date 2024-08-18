@@ -1,7 +1,13 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const wheels = ['Common', 'Uncommon', 'Rare', 'Legendary', 'Mythic'];
+const wheels = [
+  { name: 'Common', image: '/img/wheel.png' },
+  { name: 'Uncommon', image: '/img/wheel.png' },
+  { name: 'Rare', image: '/img/wheel.png' },
+  { name: 'Legendary', image: '/img/wheel.png' },
+  { name: 'Mythic', image: '/img/wheel.png' },
+];
 
 const Main: React.FC = () => {
   const navigate = useNavigate();
@@ -9,11 +15,10 @@ const Main: React.FC = () => {
   const userInventory = JSON.parse(localStorage.getItem('userInventory') || '{}');
 
   return (
-    <div className="min-h-screen bg-gray-100 p-6">
+    <div className="min-h-screen bg-gray-100 p-6 bg-gradient-to-b from-orange-400 to-yellow-500">
       <div className="flex justify-between">
         <div>
           <p>Coins: {userCoins}</p>
-          {/* Add more user info if necessary */}
         </div>
         <button
           onClick={() => navigate('/inventory')}
@@ -22,14 +27,19 @@ const Main: React.FC = () => {
           Inventory
         </button>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
-        {wheels.map((wheel) => (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {wheels.map((wheel, index) => (
           <div
-            key={wheel}
-            className="bg-white shadow-md rounded-lg p-6 text-center cursor-pointer"
-            onClick={() => navigate(`/spin/${wheel.toLowerCase()}`)}
+            key={wheel.name}
+            className="flex items-center bg-transparent border-2 border-orange-700 shadow-md rounded-lg p-6 text-center transition-transform transform hover:scale-105 hover:shadow-lg cursor-pointer"
+            onClick={() => navigate(`/spin/${wheel.name.toLowerCase()}`)}
           >
-            <h2 className="text-2xl font-bold">{wheel} Wheel</h2>
+            <img 
+              src={wheel.image} 
+              alt={`${wheel.name} Wheel`} 
+              className="h-24 w-24 object-cover rounded-full mr-4" 
+            />
+            <h2 className="text-2xl font-bold">{wheel.name} Wheel</h2>
           </div>
         ))}
       </div>
