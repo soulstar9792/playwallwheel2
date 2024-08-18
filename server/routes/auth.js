@@ -7,10 +7,11 @@ const oauth = new DiscordOauth2();
 router.post('/login', async (req, res) => {
   try {
     const code = req.body.code;
-     // Validate 'code' is present
-  if (!code) {
-    return res.status(400).json({ error: "Authorization code not provided" });
-  }
+    // Validate 'code' is present
+    if (!code) {
+      return res.status(400).json({ error: "Authorization code not provided" });
+    }
+
     const accessToken = await oauth.tokenRequest({
       clientId: process.env.DISCORD_CLIENT_ID,
       clientSecret: process.env.DISCORD_CLIENT_SECRET,
@@ -18,10 +19,12 @@ router.post('/login', async (req, res) => {
       scope: "identify guilds",
       grantType: "authorization_code",
       redirectUri: process.env.REDIRECT_URI,
-    }).catch(err => {
-      console.error('Token request error:', err);
-      res.status(400).json({ error: err.message });
-    });;
+    });
+
+    // Ensure access token was retrieved successfully
+    if (!accessToken || !accessToken.access_token) {
+      return res.status(400).json({ error: "Failed to retrieve access token" });
+    }
 
     const user = await oauth.getUser(accessToken.access_token);
     const guilds = await oauth.getUserGuilds(accessToken.access_token);
@@ -29,7 +32,7 @@ router.post('/login', async (req, res) => {
     const isMember = guilds.some(guild => guild.id === process.env.DISCORD_GUILD_ID);
 
     if (isMember) {
-      // Fetch user coins and inventory info (mocked here, replace with actual logic)
+      // Mocked user coins and inventory info, replace with actual logic
       const userCoins = 1000; // Replace with actual logic to fetch user's coins
       const userInventory = {
         commonKeys: 5,
@@ -39,13 +42,13 @@ router.post('/login', async (req, res) => {
         mythicKeys: 0,
       };
 
-      res.json({ user, userCoins, userInventory, isMember });
+      return res.json({ user, userCoins, userInventory, isMember });
     } else {
-      res.status(403).json({ error: "User is not a member of the server" });
+      return res.status(403).json({ error: "User is not a member of the server" });
     }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Authentication failed" });
+    return res.status(500).json({ error: "Authentication failed" });
   }
 });
 
