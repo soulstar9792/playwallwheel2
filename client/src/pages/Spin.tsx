@@ -10,7 +10,7 @@
       if (isSpinning) return;
       setIsSpinning(true);
       
-      const randomAngle = Math.floor(Math.random() * 360 + 360 * 4); // ensure at least one full rotation
+      const randomAngle = Math.floor(Math.random() * 360 + 360 * 12); // ensure at least one full rotation
       const score = Math.floor((randomAngle % 360) / 30) * 1000 + 1000;
       
       // Set CSS variable on the needle style using randomAngle instead of needleAngle
@@ -44,7 +44,7 @@
               />
             </div>
           </div>
-          <div
+          <img src='/img/pin_red.png'
             className={`needle ${isSpinning ? 'spinning' : ''}`}
           />
         </div>
