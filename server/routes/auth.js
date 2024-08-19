@@ -44,7 +44,7 @@ router.post('/login', async (req, res) => {
 
       return res.json({ user, userCoins, userInventory, isMember });
     } else {
-      return res.status(403).json({ error: "User is not a member of the server" });
+      return res.json({ error: "not_member" });
     }
   } catch (error) {
     console.error(error);
