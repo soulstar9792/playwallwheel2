@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import toastr from 'toastr';
+import 'toastr/build/toastr.min.css';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
@@ -12,20 +14,26 @@ const Login: React.FC = () => {
       });
 
       console.log('response.data', response.data);
-      const { isMember, userCoins, userInventory } = response.data;
+      const { error, isMember, userCoins, userInventory } = response.data;
+      if(error==="not_member"){
+        toastr.warning("You must join the PlayWall Discord server to play the game.");
+
+        return;
+      }
 
       if (isMember) {
+        toastr.success("You are now logged in!");
         // Store user data in local storage or state management (like Redux)
         localStorage.setItem('userCoins', userCoins);
         localStorage.setItem('userInventory', JSON.stringify(userInventory));
 
         navigate('/main');
       } else {
-        alert("You must join the Discord server to play the game.");
+        toastr.warning("You must join the PlayWall Discord server to play the game.");return;
       }
     } catch (error) {
       console.error(error);
-      alert("Authentication failed");
+      toastr.error("Error occurred"); return;
     }
   };
 

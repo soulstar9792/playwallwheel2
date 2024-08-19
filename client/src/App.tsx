@@ -4,6 +4,7 @@ import Login from './pages/Login';
 import Main from './pages/Main';
 import Spin from './pages/Spin';
 import Inventory from './pages/Inventory';
+import 'toastr/build/toastr.min.css';
 
 const App: React.FC = () => {
   return (
