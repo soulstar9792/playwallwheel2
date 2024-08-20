@@ -1,24 +1,26 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-
-const wheels = [
-  { name: 'Common', image: '/img/wheel.png' },
-  { name: 'Uncommon', image: '/img/wheel.png' },
-  { name: 'Rare', image: '/img/wheel.png' },
-  { name: 'Legendary', image: '/img/wheel.png' },
-  { name: 'Mythic', image: '/img/wheel.png' },
-];
+import { useSelector } from 'react-redux';
+import { RootState } from '../types'; // Adjust the import path accordingly
 
 const Main: React.FC = () => {
   const navigate = useNavigate();
-  const userCoins = localStorage.getItem('userCoins');
-  const userInventory = JSON.parse(localStorage.getItem('userInventory') || '{}');
+  const coins = useSelector((state: RootState) => state.user.coins);
+  const inventory = useSelector((state: RootState) => state.user.inventory);
+
+  const wheels = [
+    { name: 'Common', image: '/img/wheel.png' },
+    { name: 'Uncommon', image: '/img/wheel.png' },
+    { name: 'Rare', image: '/img/wheel.png' },
+    { name: 'Legendary', image: '/img/wheel.png' },
+    { name: 'Mythic', image: '/img/wheel.png' },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 bg-gradient-to-b from-orange-400 to-yellow-500">
       <div className="flex justify-between">
         <div>
-          <p>Coins: {userCoins}</p>
+          <p>Coins: {coins}</p>
         </div>
         <button
           onClick={() => navigate('/inventory')}

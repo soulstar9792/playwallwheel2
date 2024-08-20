@@ -15,9 +15,8 @@ const Login: React.FC = () => {
 
       console.log('response.data', response.data);
       const { error, isMember, userCoins, userInventory } = response.data;
-      if(error==="not_member"){
+      if (error === "not_member") {
         toastr.warning("You must join the PlayWall Discord server to play the game.");
-
         return;
       }
 
@@ -29,11 +28,13 @@ const Login: React.FC = () => {
 
         navigate('/main');
       } else {
-        toastr.warning("You must join the PlayWall Discord server to play the game.");return;
+        toastr.warning("You must join the PlayWall Discord server to play the game.");
+        return;
       }
     } catch (error) {
       console.error(error);
-      toastr.error("Error occurred"); return;
+      toastr.error("Error occurred");
+      return;
     }
   };
 
@@ -57,16 +58,26 @@ const Login: React.FC = () => {
 
   // Check if user is logged in, no need to display the button or login the user if so.
   const userCoins = localStorage.getItem('userCoins');
-  
+
   return (
-    <div className="h-screen flex justify-center items-center bg-gradient-to-b from-orange-400 to-yellow-500">
+    <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-b from-orange-400 to-yellow-500">
       {!userCoins ? (
-        <button
-          onClick={initiateDiscordLogin}
-          className="bg-white text-black font-bold py-2 px-4 rounded"
-        >
-          Join with Discord
-        </button>
+        <>
+          <button
+            onClick={initiateDiscordLogin}
+            className="bg-white text-black font-bold py-2 px-4 rounded mb-4"
+          >
+            Join with Discord
+          </button>
+          <a
+            href="https://discord.gg/zuFnrqRM"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white underline"
+          >
+            Join PlayWall now!
+          </a>
+        </>
       ) : null}
     </div>
   );
