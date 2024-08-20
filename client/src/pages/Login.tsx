@@ -14,14 +14,14 @@ const Login: React.FC = () => {
       });
 
       console.log('response.data', response.data);
-      const { error, isMember, userCoins, userInventory } = response.data;
+      const { error, user,isMember, userCoins, userInventory } = response.data;
       if (error === "not_member") {
         toastr.warning("You must join the PlayWall Discord server to play the game.");
         return;
       }
 
       if (isMember) {
-        toastr.success("You are now logged in!");
+        toastr.success(`Welcome ${user.global_name}!`, "Success");
         // Store user data in local storage or state management (like Redux)
         localStorage.setItem('userCoins', userCoins);
         localStorage.setItem('userInventory', JSON.stringify(userInventory));

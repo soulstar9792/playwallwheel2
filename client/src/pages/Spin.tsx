@@ -51,7 +51,8 @@ const Spin: React.FC = () => {
             />
           </div>
         </div>
-        <img src='/img/pin_red.png' className={`needle z-20`} />
+        <img src='/img/pin_red.png' 
+            alt={`wheel-needle`} className={`needle z-20`} />
       </div>
 
       {/* State Section */}
