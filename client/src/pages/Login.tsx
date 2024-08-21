@@ -2,10 +2,13 @@ import React from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import toastr from 'toastr';
+import { useDispatch } from 'react-redux'; // Import useDispatch
+import { setUserData } from '../slices/userSlice'; // Import the action
 import 'toastr/build/toastr.min.css';
 
 const Login: React.FC = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Create dispatch instance
 
   const handleLogin = async () => {
     try {
@@ -14,7 +17,8 @@ const Login: React.FC = () => {
       });
 
       console.log('response.data', response.data);
-      const { error, user,isMember, userCoins, userInventory } = response.data;
+      const { error, user, isMember, userCoins, userInventory } = response.data;
+
       if (error === "not_member") {
         toastr.warning("You must join the PlayWall Discord server to play the game.");
         return;
@@ -22,7 +26,15 @@ const Login: React.FC = () => {
 
       if (isMember) {
         toastr.success(`Welcome ${user.global_name}!`, "Success");
-        // Store user data in local storage or state management (like Redux)
+
+        // Dispatch the user data to the Redux store
+        dispatch(setUserData({ 
+          coins: userCoins, 
+          inventory: userInventory, 
+          isMember 
+        }));
+
+        // Optionally, store also in local storage if needed
         localStorage.setItem('userCoins', userCoins);
         localStorage.setItem('userInventory', JSON.stringify(userInventory));
 
@@ -39,12 +51,12 @@ const Login: React.FC = () => {
   };
 
   React.useEffect(() => {
-    // Check if the user is already logged in
+    // Check if the user is already logged in and has data in Redux store
     const userCoins = localStorage.getItem('userCoins');
     const userInventory = localStorage.getItem('userInventory');
 
+    // Handle redirection if user data is available in Redux
     if (userCoins && userInventory) {
-      // User is already logged in; navigate to the main page
       navigate('/main');
     } else if (window.location.search.includes('code')) {
       // If there's a code in the URL, try to log in
