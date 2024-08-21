@@ -1,5 +1,7 @@
+// server/routes/auth.js
 const express = require('express');
 const DiscordOauth2 = require("discord-oauth2");
+const User = require('../models/User'); // Import your User model
 
 const router = express.Router();
 const oauth = new DiscordOauth2();
@@ -32,17 +34,20 @@ router.post('/login', async (req, res) => {
     const isMember = guilds.some(guild => guild.id === process.env.DISCORD_GUILD_ID);
 
     if (isMember) {
-      // Mocked user coins and inventory info, replace with actual logic
-      const userCoins = 1000; // Replace with actual logic to fetch user's coins
-      const userInventory = {
-        commonKeys: 5,
-        uncommonKeys: 3,
-        rareKeys: 1,
-        legendaryKeys: 0,
-        mythicKeys: 0,
-      };
+      // Fetch the user from the database
+      const userRecord = await User.findOne({ userId: user.id, guildId: process.env.DISCORD_GUILD_ID });
 
-      return res.json({ user, userCoins, userInventory, isMember });
+      if (!userRecord) {
+        return res.json({ user, userCoins: 0, userInventory: {}, isMember });
+      }
+
+      // Return actual user coins and inventory info
+      return res.json({ 
+        user, 
+        userCoins: userRecord.coins, 
+        userInventory: userRecord.inventory, 
+        isMember 
+      });
     } else {
       return res.json({ error: "not_member" });
     }

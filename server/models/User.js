@@ -1,7 +1,15 @@
+//server/models/User.js
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-  discordId: { type: String, required: true, unique: true },
+  userId: { type: String, required: true, unique: true },
+  guildId: { type: String, required: true },
+  coins: { type: Number, default: 0 },
+  xp: { type: Number, default: 0 },
+  level: { type: Number, default: 1 },
+  messageCount: { type: Number, default: 0 },
+  lastDaily: { type: Date, default: null },
+  lastWeekly: { type: Date, default: null },
   inventory: {
     commonKeys: { type: Number, default: 0 },
     uncommonKeys: { type: Number, default: 0 },
@@ -29,13 +37,18 @@ const UserSchema = new mongoose.Schema({
     },
   },
   keyUsageHistory: [{
-    action: String,
-    date: { type: Date, default: Date.now },
+    type: Object, default: {
+      action: String,
+      date: { type: Date, default: Date.now },
+    }
   }],
   currencyTransactions: [{
-    type: String,
-    amount: Number,
-    date: { type: Date, default: Date.now },
+    type: Object, default: {
+      type: { type: String, enum: ['earn', 'spend', 'transfer'] },
+      amount: Number,
+      date: { type: Date, default: Date.now },
+      description: String
+    }
   }],
 }, { timestamps: true });
 

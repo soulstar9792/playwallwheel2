@@ -5,12 +5,12 @@ const router = express.Router();
 
 // Create/Update User
 router.post('/user', async (req, res) => {
-  const { discordId, inventory } = req.body;
+  const { userId, inventory } = req.body;
 
   try {
     // Upsert user
     const user = await User.findOneAndUpdate(
-      { discordId },
+      { userId },
       { inventory },
       { upsert: true, new: true }
     );
@@ -23,9 +23,9 @@ router.post('/user', async (req, res) => {
 });
 
 // Get User
-router.get('/user/:discordId', async (req, res) => {
+router.get('/user/:userId', async (req, res) => {
   try {
-    const user = await User.findOne({ discordId: req.params.discordId });
+    const user = await User.findOne({ userId: req.params.userId });
     if (!user) return res.status(404).json({ message: "User not found" });
     res.json(user);
   } catch (error) {
