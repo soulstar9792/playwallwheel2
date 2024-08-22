@@ -4,20 +4,64 @@ import { createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({
   name: 'user',
   initialState: {
+    userId: '',
+    guildId: '',
     coins: 0,
+    xp: 0,
+    level: 1,
+    messageCount: 0,
+    lastDaily: null,
+    lastWeekly: null,
     inventory: {},
+    roles: {
+      temporaryLuckBoosts: 0,
+      vipPass: false,
+      luckBoosts: {
+        boost1: null,
+        boost2: null,
+        boost3: null,
+        boost4: null,
+        boost5: null,
+      },
+    },
+    keyUsageHistory: [],
+    currencyTransactions: [],
     isMember: false,
   },
   reducers: {
     setUserData: (state, action) => {
-      state.coins = action.payload.coins;
-      state.inventory = action.payload.inventory;
-      state.isMember = action.payload.isMember;
+      return {
+        ...state,
+        ...action.payload,
+      };
     },
     clearUserData: (state) => {
-      state.coins = 0;
-      state.inventory = {};
-      state.isMember = false;
+      return {
+        ...state,
+        userId: '',
+        guildId: '',
+        coins: 0,
+        xp: 0,
+        level: 1,
+        messageCount: 0,
+        lastDaily: null,
+        lastWeekly: null,
+        inventory: {},
+        roles: {
+          temporaryLuckBoosts: 0,
+          vipPass: false,
+          luckBoosts: {
+            boost1: null,
+            boost2: null,
+            boost3: null,
+            boost4: null,
+            boost5: null,
+          },
+        },
+        keyUsageHistory: [],
+        currencyTransactions: [],
+        isMember: false,
+      };
     },
   },
 });
