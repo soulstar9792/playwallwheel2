@@ -3,13 +3,12 @@ const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
-  username: { type: String, required: true },
-  avatar: { type: String, required: true },
-  avatar_decoration_data: { type: String, required: true },
-  accent_color: { type: String, required: true },
-  global_name: { type: String, required: true },
+  username: { type: String, default: null },
+  avatar: { type: String, default: null },
+  avatar_decoration_data: { type: String, default: null },
+  accent_color: { type: String, default: null },
+  global_name: { type: String, default: null },
   
-  guildId: { type: String, required: true },
   coins: { type: Number, default: 0 },
   xp: { type: Number, default: 0 },
   level: { type: Number, default: 1 },

@@ -80,7 +80,6 @@ client.on('interactionCreate', async interaction => {
     }
     if (interaction.isButton()) { // Ensure the interaction is a button interaction
         if (interaction.customId === 'claimGift') {
-            const userId = interaction.user.id;
 
             // Optionally, you can have the amount of coins here, for example, 100
             const coinsToAdd = 100;

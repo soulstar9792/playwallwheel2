@@ -35,10 +35,11 @@ router.post('/login', async (req, res) => {
 
     if (isMember) {
       // Fetch the user from the database
-      const userRecord = await User.findOne({ userId: user.id});
+      const userRecord = await User.findOne({ id: user.id});
       if (!userRecord) {
         userRecord = new User(user); 
     }
+    console.log(user);
 
       // Return actual user coins and inventory info
       return res.json(userRecord);

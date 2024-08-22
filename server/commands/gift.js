@@ -11,10 +11,10 @@ module.exports = {
         .setDescription('Claim a gift!'),
     
     async execute(interaction) {
-        const userId = interaction.user.id;
+        const id = interaction.user.id;
 
         // Check if the user is on cooldown
-        if (cooldown.has(userId)) {
+        if (cooldown.has(id)) {
             return interaction.reply({ content: 'You need to wait before claiming another gift!', ephemeral: true });
         }
 
@@ -30,11 +30,11 @@ module.exports = {
         await interaction.reply({ content: 'Press the button below to claim your gift!', components: [row] });
 
         // Add user to cooldown
-        cooldown.add(userId);
+        cooldown.add(id);
 
         // Set a timeout to remove the user from the cooldown after a specific time (e.g., 1 hour)
         setTimeout(() => {
-            cooldown.delete(userId);
+            cooldown.delete(id);
         }, 3600000); // 1 hour
     },
 };
