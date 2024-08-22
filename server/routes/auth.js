@@ -36,17 +36,13 @@ router.post('/login', async (req, res) => {
     if (isMember) {
       // Fetch the user from the database
       const userRecord = await User.findOne({ userId: user.id, guildId: process.env.DISCORD_GUILD_ID });
-
       if (!userRecord) {
-        return res.json({ user, userCoins: 0, userInventory: {}, isMember });
-      }
+        userRecord = new User({ userId: user.id, guildId: process.env.DISCORD_GUILD_ID });
+    }
 
       // Return actual user coins and inventory info
       return res.json({ 
-        user, 
-        userCoins: userRecord.coins, 
-        userInventory: userRecord.inventory, 
-        isMember 
+        user: {...user, ...userRecord},
       });
     } else {
       return res.json({ error: "not_member" });

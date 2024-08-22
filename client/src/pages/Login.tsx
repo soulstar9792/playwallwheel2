@@ -20,32 +20,18 @@ const Login: React.FC = () => {
       });
 
       console.log('response.data', response.data);
-      const { error, user, isMember } = response.data;
+      const { error, user} = response.data;
 
       if (error === "not_member") {
         toastr.warning("You must join the PlayWall Discord server to play the game.");
         return;
       }
 
-      if (isMember) {
+      if (user.userId) {
         toastr.success(`Welcome ${user.global_name}!`, "Success");
 
         // Dispatch the full user data to the Redux store
-        dispatch(setUserData({
-          userId: user.userId,
-          guildId: user.guildId,
-          coins: user.userCoins,
-          xp: user.xp,
-          level: user.level,
-          messageCount: user.messageCount,
-          lastDaily: user.lastDaily,
-          lastWeekly: user.lastWeekly,
-          inventory: user.userInventory,
-          roles: user.roles,
-          keyUsageHistory: user.keyUsageHistory,
-          currencyTransactions: user.currencyTransactions,
-          isMember,
-        }));
+        dispatch(setUserData(user));
 
         navigate('/main');
       } else {
