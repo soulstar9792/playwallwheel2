@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
     console.log(user);
 
       // Return actual user coins and inventory info
-      return res.json(userRecord);
+      return res.json({user: userRecord});
     } else {
       return res.json({ error: "not_member" });
     }
