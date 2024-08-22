@@ -40,9 +40,9 @@ router.post('/login', async (req, res) => {
         userRecord = new User({ 
           id: user.id, 
           username: user.username, 
-          globalName: user.globalName, 
-          accentColor: user.accentColor, 
-          avatarDecoration: user.avatarDecoration, 
+          globalName: user.global_name,
+          accentColor: user.accent_color, 
+          avatarDecoration: user.avatar_decoration_data,
           avatar: user.avatar 
         });
     }
