@@ -4,8 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({
   name: 'user',
   initialState: {
-    userId: '',
-    guildId: '',
+    id: '',
     coins: 0,
     xp: 0,
     level: 1,
@@ -38,8 +37,7 @@ const userSlice = createSlice({
     clearUserData: (state) => {
       return {
         ...state,
-        userId: '',
-        guildId: '',
+        id: '',
         coins: 0,
         xp: 0,
         level: 1,

@@ -27,7 +27,7 @@ const Login: React.FC = () => {
         return;
       }
 
-      if (user.userId) {
+      if (user.id) {
         toastr.success(`Welcome ${user.global_name}!`, "Success");
 
         // Dispatch the full user data to the Redux store
@@ -47,13 +47,13 @@ const Login: React.FC = () => {
 
   React.useEffect(() => {
     // Check if the user is already logged in by inspecting Redux store
-    if (userState.userId) {
+    if (userState.id) {
       navigate('/main');
     } else if (window.location.search.includes('code')) {
       // If there's a code in the URL, try to log in
       handleLogin();
     }
-  }, [navigate, userState.userId]);
+  }, [navigate, userState.id]);
 
   const initiateDiscordLogin = () => {
     window.location.href = `https://discord.com/oauth2/authorize?client_id=1273980356634214501&permissions=8&response_type=code&redirect_uri=https%3A%2F%2Fplaywallwheel-d32590149af8.herokuapp.com%2F&integration_type=0&scope=identify+guilds+bot`;
@@ -61,7 +61,7 @@ const Login: React.FC = () => {
 
   return (
     <div className="h-screen flex flex-col justify-center items-center bg-gradient-to-b from-orange-400 to-yellow-500">
-      {!userState.userId ? (
+      {!userState.id ? (
         <>
           <button
             onClick={initiateDiscordLogin}

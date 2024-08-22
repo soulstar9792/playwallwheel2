@@ -19,12 +19,12 @@ export interface Inventory {
 export interface UserRoles {
   temporaryLuckBoosts: number;
   vipPass: boolean;
-  luckBoosts: {
-      boost1?: Date; // Optional fields can be indicated with '?'
-      boost2?: Date;
-      boost3?: Date;
-      boost4?: Date;
-      boost5?: Date;
+  luckBoosts?: {
+    boost1?: Date; // Optional fields can be indicated with '?'
+    boost2?: Date;
+    boost3?: Date;
+    boost4?: Date;
+    boost5?: Date;
   };
 }
 
@@ -44,8 +44,7 @@ export interface CurrencyTransaction {
 
 // Define the shape of the user state
 export interface UserState {
-  userId: string; // Include user ID as per your schema
-  guildId: string; // Include guild ID as per your schema
+  id: string; // Include user ID as per your schema
   coins: number;
   xp: number;
   level: number;
