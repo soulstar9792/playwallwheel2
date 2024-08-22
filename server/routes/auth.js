@@ -35,7 +35,7 @@ router.post('/login', async (req, res) => {
 
     if (isMember) {
       // Fetch the user from the database
-      const userRecord = await User.findOne({ id: user.id});
+      let userRecord = await User.findOne({ id: user.id});
       if (!userRecord) {
         userRecord = new User({ 
           id: user.id, 
