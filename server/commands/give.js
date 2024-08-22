@@ -9,7 +9,6 @@ module.exports = {
     .addIntegerOption(option => option.setName('amount').setDescription('The amount of coins to give').setRequired(true)),
   async execute(interaction) {
     const giverId = interaction.user.id;
-    const guildId = interaction.guild.id;
     const targetUser = interaction.options.getUser('target');
     const amount = interaction.options.getInteger('amount');
 

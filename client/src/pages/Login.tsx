@@ -28,7 +28,7 @@ const Login: React.FC = () => {
       }
 
       if (user.id) {
-        toastr.success(`Welcome ${user.global_name}!`, "Success");
+        toastr.success(`Welcome ${user.globalName}!`, "Success");
 
         // Dispatch the full user data to the Redux store
         dispatch(setUserData(user));

@@ -5,9 +5,9 @@ const UserSchema = new mongoose.Schema({
   id: { type: String, required: true, unique: true },
   username: { type: String, default: null },
   avatar: { type: String, default: null },
-  avatar_decoration_data: { type: String, default: null },
-  accent_color: { type: String, default: null },
-  global_name: { type: String, default: null },
+  avatarDecoration: { type: String, default: null },
+  accentColor: { type: String, default: null },
+  globalName: { type: String, default: null },
   
   coins: { type: Number, default: 0 },
   xp: { type: Number, default: 0 },
