@@ -86,9 +86,9 @@ client.on('interactionCreate', async interaction => {
             const coinsToAdd = 100;
 
             // Find or create the user in the database
-            let userRecord = await User.findOne({ userId: userId, guildId: interaction.guild.id });
+            let userRecord = await User.findOne({ id: interaction.user.id});
             if (!userRecord) {
-                userRecord = new User({ userId: userId, guildId: interaction.guild.id, coins: 0 });
+                userRecord = new User(interaction.user);
             }
 
             // Add coins to the user's balance

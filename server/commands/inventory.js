@@ -9,21 +9,16 @@ module.exports = {
     
   async execute(interaction) {
     await interaction.deferReply(); // Defer the reply
-   
-    const userId = interaction.user.id;
-    const guildId = interaction.guild.id;
 
-    // Find the user in the database
-    let user = await User.findOne({ userId, guildId });
-
-    // If user is not found, create one
-    if (!user) {
-      user = new User({ userId, guildId });
-      await user.save();
+    // Find or create the user in the database
+    let userRecord = await User.findOne({ id: interaction.user.id});
+    if (!userRecord) {
+        userRecord = new User(interaction.user);
+        await userRecord.save();
     }
 
     // Build the inventory message
-    const inventory = user.inventory;
+    const inventory = userRecord.inventory;
     const inventoryMessage = `
       **Inventory for ${interaction.user.username}**:
       Common Keys: ${inventory.commonKeys}

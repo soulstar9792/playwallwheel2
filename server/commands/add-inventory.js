@@ -41,13 +41,12 @@ module.exports = {
             return interaction.reply({ content: `Invalid item type. Valid types are: ${validItems.join(', ')}`, ephemeral: true });
         }
 
-        // Find the target user in the database
-        let userRecord = await User.findOne({ userId: targetUser.id, guildId: guild.id });
-
-        // If user is not found, create one
-        if (!userRecord) {
-            userRecord = new User({ userId: targetUser.id, guildId: guild.id });
-        }
+        
+            // Find or create the user in the database
+            let userRecord = await User.findOne({ id: interaction.user.id });
+            if (!userRecord) {
+                userRecord = new User(interaction.user);
+            }
 
         // Add items to the user's inventory based on the item type
         userRecord.inventory[`${item}Keys`] += amount; // adds a certain amount of the item type

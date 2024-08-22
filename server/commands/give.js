@@ -15,15 +15,15 @@ module.exports = {
 
     if (amount <= 0) return interaction.reply('Amount must be greater than 0.');
 
-    let giver = await User.findOne({ userId: giverId, guildId });
-    let receiver = await User.findOne({ userId: targetUser.id, guildId });
+    let giver = await User.findOne({ id: giverId });
+    let receiver = await User.findOne({ id: targetUser.id });
 
     if (!giver || giver.coins < amount) {
       return interaction.reply('You do not have enough coins.');
     }
 
     if (!receiver) {
-      receiver = new User({ userId: targetUser.id, guildId });
+      receiver = new User(targetUser); 
     }
 
     giver.coins -= amount;

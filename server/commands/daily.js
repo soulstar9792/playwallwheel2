@@ -6,28 +6,25 @@ module.exports = {
     .setName('daily')
     .setDescription('Collect your daily coins'),
   async execute(interaction) {
-    const userId = interaction.user.id;
-    const guildId = interaction.guild.id;
-
-    let user = await User.findOne({ userId, guildId });
-
-    if (!user) {
-      user = new User({ userId, guildId });
-      await user.save();
+     
+    // Find or create the user in the database
+    let userRecord = await User.findOne({ id: interaction.user.id });
+    if (!userRecord) {
+        userRecord = new User(interaction.user);
     }
 
     const now = new Date();
-    const diff = now - user.lastDaily;
+    const diff = now - userRecord.lastDaily;
 
     if (diff < 86400000) {
       return interaction.reply('You have already collected your daily coins!');
     }
 
-    user.coins += 100; // Daily coin amount
-    user.dailyStreak += 1;
-    user.lastDaily = now;
-    await user.save();
+    userRecord.coins += 100; // Daily coin amount
+    userRecord.dailyStreak += 1;
+    userRecord.lastDaily = now;
+    await userRecord.save();
 
-    await interaction.reply(`You have collected 100 coins! You now have ${user.coins} coins.`);
+    await interaction.reply(`You have collected 100 coins! You now have ${userRecord.coins} coins.`);
   },
 };

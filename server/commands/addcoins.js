@@ -30,12 +30,11 @@ module.exports = {
             return interaction.reply({ content: 'You must specify a positive amount of coins to add.', ephemeral: true });
         }
 
-        // Find the target user in the database
-        let userRecord = await User.findOne({ userId: targetUser.id, guildId: guild.id });
-
-        // If user is not found, create one
+        
+        // Find or create the user in the database
+        let userRecord = await User.findOne({ id: interaction.user.id });
         if (!userRecord) {
-            userRecord = new User({ userId: targetUser.id, guildId: guild.id, coins: 0 }); // Initialize with 0 coins if user not found
+            userRecord = new User(interaction.user);
         }
 
         // Add coins to the user's balance

@@ -2,7 +2,13 @@
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
-  userId: { type: String, required: true, unique: true },
+  id: { type: String, required: true, unique: true },
+  username: { type: String, required: true },
+  avatar: { type: String, required: true },
+  avatar_decoration_data: { type: String, required: true },
+  accent_color: { type: String, required: true },
+  global_name: { type: String, required: true },
+  
   guildId: { type: String, required: true },
   coins: { type: Number, default: 0 },
   xp: { type: Number, default: 0 },

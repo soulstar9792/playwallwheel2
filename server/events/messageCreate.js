@@ -6,24 +6,20 @@ module.exports = {
     if (message.author.bot) return;
     console.log("Message Created");
 
-    const userId = message.author.id;
-    const guildId = message.guild.id;
-
-    let user = await User.findOne({ userId, guildId });
-
-    if (!user) {
-      user = new User({ userId, guildId });
-      await user.save();
+    // Find or create the user in the database
+    let userRecord = await User.findOne({ id: message.author.id});
+    if (!userRecord) {
+        userRecord = new User(message.author);
     }
     // user.coins += 1; // Reward for each message
-    user.xp += 15;
-    if (user.xp >= user.level * 100) {
-        user.level += 1;
-        user.xp = 0;
-        message.reply(`Congratulations <@${userId}>, you've leveled up to level ${user.level}!`);
+    userRecord.xp += 15;
+    if (userRecord.xp >= userRecord.level * 100) {
+        userRecord.level += 1;
+        userRecord.xp = 0;
+        message.reply(`Congratulations <@${userRecordId}>, you've leveled up to level ${userRecord.level}!`);
     }
-    user.messageCount += 1;
-    user.lastMessage = new Date();
-    await user.save();
+    userRecord.messageCount += 1;
+    userRecord.lastMessage = new Date();
+    await userRecord.save();
   },
 };

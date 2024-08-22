@@ -6,17 +6,15 @@ module.exports = {
     .setName('balance')
     .setDescription('Check your coin balance'),
   async execute(interaction) {
-    const userId = interaction.user.id;
-    const guildId = interaction.guild.id;
-
-    let user = await User.findOne({ userId, guildId });
-
-    if (!user) {
-      user = new User({ userId, guildId });
-      await user.save();
+        
+    // Find or create the user in the database
+    let userRecord = await User.findOne({ id: interaction.user.id });
+    if (!userRecord) {
+        userRecord = new User(interaction.user);
+        await userRecord.save();
     }
 
-    await interaction.reply(`${interaction.user.username}, you have ${user.coins} coins.`);
+    await interaction.reply(`${interaction.user.username}, you have ${userRecord.coins} coins.`);
   },
 };
 
