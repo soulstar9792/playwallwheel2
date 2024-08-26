@@ -18,14 +18,14 @@ router.post('/', (req, res) => {
     }
 
     // Calculate a random angle for the spin
-    const randomAngle = Math.floor(Math.random() * 30);
-
-    // Get the rewards based on the type
     const availableRewards = rewards[type];
-
+    
     // Select a random reward from the available rewards
     const randomRewardIndex = Math.floor(Math.random() * availableRewards.length);
     const selectedReward = availableRewards[randomRewardIndex];
+    
+    // Get the angle based on the random reward index
+    const randomAngle = 3240 + randomRewardIndex * 30 + Math.floor(Math.random() * 30);
 
     // Here you might want to save the score to the database associated with the user
     // Save score logic can be added here
