@@ -5,6 +5,7 @@ import axios from 'axios'; // Import axios for API calls
 import { useSelector } from 'react-redux'; // Import useSelector
 import toastr from 'toastr'; // Import toastr for notifications
 import 'toastr/build/toastr.min.css';
+import { setUserData } from '../slices/userSlice';
 
 const Spin: React.FC = () => {
   const { type } = useParams<{ type?: string }>();
@@ -15,18 +16,24 @@ const Spin: React.FC = () => {
 
   const handleSpin = async () => {
     if (isSpinning) return;
-    setIsSpinning(true);
+    if (user.inventory[`${type}Keys`] <= 0) {
+      toastr.error("You don't have any keys to spin");
+      return;
+    };
 
     try {
       const userId = user.id;
       const response = await axios.post('/api/spin', { type, userId });
       const message = response.data.message;
       const angle = response.data.angle;
+      const newUser = response.data.user;
 
       document.documentElement.style.setProperty('--spin-end-angle', `-${angle}deg`);
+      setIsSpinning(true);
 
       setTimeout(() => {
         setIsSpinning(false);
+        setUserData(newUser);
         // Show success message with toastr
         alert(message);
       }, 8000);

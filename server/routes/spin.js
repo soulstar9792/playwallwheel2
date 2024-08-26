@@ -2,9 +2,10 @@
 const express = require('express');
 const router = express.Router();
 const rewards = require('../const/reward.json'); // Import rewards JSON
+const updateInventory = require('../utils/updateInventory.js');
 
 // Generate a random spin and calculate score
-router.post('/', (req, res) => {
+router.post('/', async (req, res) => {
     const { type, userId } = req.body;
 
     // Validate input
@@ -26,17 +27,13 @@ router.post('/', (req, res) => {
     
     // Get the angle based on the random reward index
     const randomAngle = 3600 + randomRewardIndex * 30 + Math.floor(Math.random() * 30);
-
-    // Here you might want to save the score to the database associated with the user
-    // Save score logic can be added here
+    const user = await updateInventory(userId, selectedReward.type, selectedReward.amount);
 
     // Respond with the score, angle, and the selected reward
     res.json({ 
-        score: selectedReward.amount, 
-        type: selectedReward.type,
         angle: randomAngle, 
         message: selectedReward.message,
-        randomRewardIndex
+        user
     });
 });
 
