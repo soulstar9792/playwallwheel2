@@ -22,6 +22,7 @@ const Spin: React.FC = () => {
     try {
       const userId = user.id; // Use the user ID from the Redux store
       const response = await axios.post('/api/spin', { type, userId });
+      console.log(response.data);
       const message = response.data.message;
       const angle = response.data.angle;
 

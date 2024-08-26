@@ -33,6 +33,7 @@ router.post('/', (req, res) => {
     // Respond with the score, angle, and the selected reward
     res.json({ 
         score: selectedReward.amount, 
+        type: selectedReward.type,
         angle: randomAngle, 
         message: selectedReward.message,
         randomRewardIndex
