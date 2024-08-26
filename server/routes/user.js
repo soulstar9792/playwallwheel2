@@ -4,7 +4,7 @@ const User = require('../models/User');
 const router = express.Router();
 
 // Create/Update User
-router.post('/user', async (req, res) => {
+router.post('/', async (req, res) => {
   const { id, inventory } = req.body;
 
   try {
@@ -23,7 +23,7 @@ router.post('/user', async (req, res) => {
 });
 
 // Get User
-router.get('/user/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const user = await User.findOne({ id: req.params.id });
     if (!user) return res.status(404).json({ message: "User not found" });

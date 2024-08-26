@@ -8,6 +8,7 @@ module.exports = {
   async execute(interaction) {
         
     // Find or create the user in the database
+    console.log(interaction.user);
     let userRecord = await User.findOne({ id: interaction.user.id });
     if (!userRecord) {
         userRecord = new User(interaction.user);

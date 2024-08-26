@@ -1,0 +1,366 @@
+{
+    "common": [
+        {
+            "number": 1,
+            "type" : "uncommon_key_fragment",
+            "amount" : 6,
+            "message" : "You found 6 uncommon key fragments!"
+        },
+        {
+            "number": 2,
+            "type" : "coin",
+            "amount" : 9,
+            "message" : "You found 9 coins!"
+        },
+        {   
+            "number": 3,
+            "type" : "friend_reroll",
+            "amount" : 1,
+            "message" : "You found a friend reroll!"
+        },
+        {
+            "number": 4,
+            "type" : "coin",
+            "amount" : 6,
+            "message" : "You found 6 coins!"    
+        },
+        {
+            "number": 5,
+            "type" : "uncommon_key_fragment",
+            "amount" : 6,
+            "message" : "You found 6 uncommon key fragments!"
+        },
+        {
+            "number": 6,
+            "type" : "coin",
+            "amount" : 18,
+            "message" : "You found 18 coins!"
+        },
+        {
+            "number": 7,
+            "type" : "rare_key_fragment",
+            "amount" : 3,
+            "message" : "You found 3 rare key fragments!"
+        },
+        {
+            "number": 8,
+            "type" : "missed",
+            "amount" : 0,
+            "message" : "You missed!"
+        },
+        {
+            "number": 9,
+            "type" : "uncommon_key_fragment",
+            "amount" : 6,
+            "message" : "You found 6 uncommon key fragments!"
+        },
+        {
+            "number": 10,
+            "type" : "coin",
+            "amount" : 30,
+            "message" : "You found 30 coins!"
+        },
+        {
+            "number": 11,
+            "type" : "missed",
+            "amount" : 0,
+            "message" : "You missed!"
+        }
+    ],
+    "uncommon": [
+        {
+            "number": 1,
+            "type" : "rare_key_fragment",
+            "amount" : 4,
+            "message" : "You found 4 rare key fragments!"
+        },
+        {
+            "number": 2,
+            "type" : "coin",
+            "amount" : 12,
+            "message" : "You found 12 coins!"
+        },
+        {
+            "number": 3,
+            "type" : "friend_reroll",
+            "amount" : 1,
+            "message" : "You found a friend reroll!"
+        },
+        {
+            "number": 4,
+            "type" : "playbucks_token",
+            "amount" : 10,
+            "message" : "You found 10 PlayBucks Tokens!"
+        },
+        {
+            "number": 5,
+            "type" : "temp_luck_boost",
+            "amount" : 1,
+            "message" : "You found a temporary luck boost!"
+        },
+        {
+            "number": 6,
+            "type" : "coin",
+            "amount" : 90,
+            "message" : "You found 90 coins!"
+        },
+        {
+            "number": 7,
+            "type" : "uncommon_key_fragment",
+            "amount" : 10,
+            "message" : "You found 10 uncommon key fragments!"
+        },
+        {
+            "number": 8,
+            "type" : "playbucks_token",
+            "amount" : 7.5,
+            "message" : "You found 7.5 PlayBucks Tokens!"
+        },
+        {
+            "number": 9,
+            "type" : "rare_key_fragment",
+            "amount" : 4,
+            "message" : "You found 4 rare key fragments!"
+        },
+        {
+            "number": 10,
+            "type" : "coin",
+            "amount" : 36,
+            "message" : "You found 36 coins!"
+        },
+        {
+            "number": 11,
+            "type" : "missed",
+            "amount" : 0,
+            "message" : "You missed!"
+        },
+        {
+            "number": 12,
+            "type" : "playbucks_token",
+            "amount" : 3.75,
+            "message" : "You found 3.75 PlayBucks Tokens!"
+        }
+    ],
+    "rare": [
+        {  
+            "number": 1,
+            "type" : "legendary_key_fragment",
+            "amount" : 5,
+            "message" : "You found 5 legendary key fragment!"
+        },
+        {
+            "number": 2,    
+            "type" : "playbucks_token",
+            "amount" : 22.5,
+            "message" : "You found 22.5 PlayBucks Tokens!"
+        }, 
+        {
+            "number": 3,
+            "type" : "mythic_key_fragment",
+            "amount" : 3,
+            "message" : "You found 3 mythic key fragments!"
+        },
+        {
+            "number": 4,
+            "type" : "playbucks_token",
+            "amount" : 135,
+            "message" : "You found 135 PlayBucks Tokens!"
+        },
+        {  
+            "number": 5,
+            "type" : "legendary_key_fragment",
+            "amount" : 5,
+            "message" : "You found 5 legendary key fragment!"
+        },
+        {
+            "number": 6,
+            "type" : "coin",
+            "amount" : 113,
+            "message" : "You found 113 coins!"
+        },
+        {
+            "number": 7,
+            "type" : "usdp_token",
+            "amount" : 3,
+            "message" : "You found 3 USDP Tokens!"
+        },
+        {
+            "number": 8,
+            "type" : "missed",
+            "amount" : 0,
+            "message" : "You missed!"
+        },
+        {
+            "number": 9,
+            "type" : "playbucks_token",
+            "amount" : 22.5,
+            "message" : "You found 22.5 PlayBucks Tokens!"
+        },
+        {
+            "number": 10,
+            "type" : "friend_reroll",
+            "amount" : 1,
+            "message" : "You found a friend reroll!"
+        },
+        {
+            "number": 11,
+            "type" : "coin",
+            "amount" : 113,
+            "message" : "You found 113 coins!"
+        },
+        {
+            "number": 12,
+            "type" : "temp_luck_boost" ,
+            "amount" : 1,
+            "message" : "You found a temporary luck boost!"
+        }
+    ],
+    "legendary": [
+        {
+            "number": 1,
+            "type" : "usdp_token",
+            "amount" : 6,
+            "message" : "You found 6 USDP Tokens!"
+        },
+        {
+            "number": 2,
+            "type" : "mythic_key_fragment",
+            "amount" : 3,
+            "message" : "You found 3 mythic key fragments!"
+        },
+        {
+            "number": 3,
+            "type" : "playbucks_token",
+            "amount" : 75,
+            "message" : "You found 75 PlayBucks Tokens!"
+        }, 
+        {
+            "number": 4,
+            "type" : "vip_role",
+            "amount" : 1,
+            "message" : "You found a VIP role!"
+        },
+        {
+            "number": 5,
+            "type" : "usdp_token",
+            "amount" : 6,
+            "message" : "You found 6 USDP Tokens!"
+        },
+        {
+            "number": 6,
+            "type" : "coin",
+            "amount" : 250,
+            "message" : "You found 250 coins!"
+        },
+        {
+            "number": 7,
+            "type" : "playbucks_token",
+            "amount" : 38,
+            "message" : "You found 38 PlayBucks Tokens!"
+        },  
+        {
+            "number": 8,
+            "type" : "mythic_key_fragment",
+            "amount" : 3,
+            "message" : "You found 3 mythic key fragments!"
+        },
+        {
+            "number": 9,
+            "type" : "usdp_token",
+            "amount" : 6,
+            "message" : "You found 6 USDP Tokens!"
+        },
+        {
+            "number": 10,
+            "type" : "friend_reroll",
+            "amount" : 1,
+            "message" : "You found a friend reroll!"
+        },
+        {
+            "number": 11,
+            "type" : "playbucks_token", 
+            "amount" : 38,            
+            "message" : "You found 38 PlayBucks Tokens!"
+        },
+        {
+            "number": 12,
+            "type" : "missed",
+            "amount" : 0,
+            "message" : "You missed!"
+        }
+    ],
+    "mythic": [
+        {
+            "number": 1,
+            "type" : "usdp_token",
+            "amount" : 50,
+            "message" : "You found 50 USDP Tokens!"
+        },
+        {
+            "number": 2,
+            "type" : "usdp_token",
+            "amount" : 10,
+            "message" : "You found 10 USDP Tokens!"
+        },
+        {
+            "number": 3,
+            "type" : "usdp_token",
+            "amount" : 10,
+            "message" : "You found 10 USDP Tokens!"
+        },
+        {
+            "number": 4,
+            "type" : "key_box",
+            "amount" : 1,
+            "message" : "You found a key box!"
+        },
+        {
+            "number": 5,
+            "type" : "playbucks_token",
+            "amount" : 700,
+            "message" : "You found 700 PlayBucks Tokens!"
+        },
+        {
+            "number": 6,
+            "type" : "playbucks_token",
+            "amount" : 700,
+            "message" : "You found 700 PlayBucks Tokens!"
+        },
+        {
+            "number": 7,
+            "type" : "usdp_token",
+            "amount" : 50,
+            "message" : "You found 50 USDP Tokens!"
+        },
+        {
+            "number": 8,
+            "type" : "playbucks_token",
+            "amount" : 700,
+            "message" : "You found 700 PlayBucks Tokens!"
+        },
+        {
+            "number":9,
+            "type" : "playbucks_token",
+            "amount" : 700,
+            "message" : "You found 700 PlayBucks Tokens!"
+        },
+        {
+            "number": 10,
+            "type" : "vip_role",
+            "amount" : 1,
+            "message" : "You found a VIP role!"
+        },
+        {
+            "number": 11,
+            "type" : "usdp_token",
+            "amount" : 10,
+            "message" : "You found 10 USDP Tokens!"
+        },
+        {
+            "number": 12,
+            "type" : "usdp_token",
+            "amount" : 10,
+            "message" : "You found 10 USDP Tokens!"
+        }
+    ]
+}
