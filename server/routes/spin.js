@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
     const selectedReward = availableRewards[randomRewardIndex];
     
     // Get the angle based on the random reward index
-    const randomAngle = 3600 + randomRewardIndex * 30 - Math.floor(Math.random() * 30);
+    const randomAngle = 3600 + randomRewardIndex * 30 + Math.floor(Math.random() * 30);
 
     // Here you might want to save the score to the database associated with the user
     // Save score logic can be added here
