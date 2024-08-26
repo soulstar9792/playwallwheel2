@@ -26,7 +26,7 @@ const Spin: React.FC = () => {
       const message = response.data.message;
       const angle = response.data.angle;
 
-      document.documentElement.style.setProperty('--spin-end-angle', `${angle}deg`);
+      document.documentElement.style.setProperty('--spin-end-angle', `-${angle}deg`);
 
 
       setTimeout(() => {
