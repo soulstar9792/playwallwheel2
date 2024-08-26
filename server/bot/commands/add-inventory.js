@@ -1,6 +1,6 @@
 // commands/add-inventory.js
 const { SlashCommandBuilder } = require('@discordjs/builders');
-const User = require('../models/User');
+const User = require('../../models/User');
 
 module.exports = {
     data: new SlashCommandBuilder()

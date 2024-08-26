@@ -1,7 +1,7 @@
 // commands/gift.js
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js'); // Updated for Discord.js v14
-const User = require('../models/User');
+const User = require('../../models/User');
 
 const cooldown = new Set();  // Set to track active cooldowns
 
