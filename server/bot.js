@@ -37,10 +37,10 @@ client.commands = new Collection();
 const commands = []; // Array to hold commands for registration
 
 // Command handling
-const commandFiles = fs.readdirSync('./server/commands').filter(file => file.endsWith('.js'));
+const commandFiles = fs.readdirSync('./server/bot/commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
+    const command = require(`./bot/commands/${file}`);
     client.commands.set(command.data.name, command);
     commands.push(command.data.toJSON()); // Add command data for registration
 }
@@ -111,10 +111,10 @@ client.on('interactionCreate', async interaction => {
 });
 
 // Event handling
-const eventFiles = fs.readdirSync('./server/events').filter(file => file.endsWith('.js'));
+const eventFiles = fs.readdirSync('./server/bot/events').filter(file => file.endsWith('.js'));
 
 for (const file of eventFiles) {
-    const event = require(`./events/${file}`);
+    const event = require(`./bot/events/${file}`);
     if (event.once) {
         client.once(event.name, (...args) => event.execute(...args));
     } else {
