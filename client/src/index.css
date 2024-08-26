@@ -66,9 +66,9 @@ code {
 .needle {
   position: absolute;
   bottom : 50%;
-  left: 47%; 
-  width: 6%; /* style width as needed */
-  height: 30%; /* half the height of the wheel image */
+  left: 48.5%;
+  width: 3%; /* style width as needed */
+  height: 20%; /* half the height of the wheel image */
   background-color: transparent; /* color of the needle */
   transform-origin: bottom;
 }

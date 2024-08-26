@@ -11,38 +11,33 @@ const Spin: React.FC = () => {
   const [isSpinning, setIsSpinning] = useState(false);
   const navigate = useNavigate();
 
-  // Fetch user data from the Redux store
-  const user = useSelector((state: any) => state.user); // Select user state
+  const user = useSelector((state: any) => state.user);
 
   const handleSpin = async () => {
     if (isSpinning) return;
-
     setIsSpinning(true);
 
     try {
-      const userId = user.id; // Use the user ID from the Redux store
+      const userId = user.id;
       const response = await axios.post('/api/spin', { type, userId });
-      console.log(response.data);
       const message = response.data.message;
       const angle = response.data.angle;
 
       document.documentElement.style.setProperty('--spin-end-angle', `-${angle}deg`);
 
-
       setTimeout(() => {
         setIsSpinning(false);
         // Show success message with toastr
-        alert(message); 
+        alert(message);
       }, 8000);
     } catch (error) {
       console.error('Error during spin:', error);
-      toastr.error("Error occurred during the spin"); // Error message
+      toastr.error("Error occurred during the spin");
     }
   };
 
   const displayType = type ? type.charAt(0).toUpperCase() + type.slice(1) : 'Default';
 
-  // Determine which counts to show based on the spin type
   let keysCount = 0;
   let fragmentsCount = 0;
 
@@ -65,15 +60,15 @@ const Spin: React.FC = () => {
       break;
     case 'mythic':
       keysCount = user.inventory.mythicKeys;
-      fragmentsCount = 0; // No fragments for mythic
+      fragmentsCount = 0;
       break;
     default:
       break;
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 bg-gradient-to-b from-orange-400 to-yellow-500 flex flex-col items-center">
-      <div className="w-full flex justify-start">
+    <div className="min-h-screen flex flex-col bg-gray-100 bg-gradient-to-b from-orange-400 to-yellow-500" style={{ height: '100vh' }}>
+      <div className="flex justify-start">
         <button onClick={() => navigate('/')} className="text-blue-500 m-10">
           Back
         </button>
@@ -81,13 +76,9 @@ const Spin: React.FC = () => {
       <div className="text-center">
         <h1 className="text-3xl font-bold">{displayType} Wheel</h1>
       </div>
-      <div className="relative flex justify-center items-center" style={{ height: 'calc(100vh - 250px)' }}>
+      <div className="relative flex-grow flex justify-center items-center" style={{ height: '50%' }}>
         <div className="wheel-pan w-full h-full">
-          {/* <img 
-            src="/img/wheel-pan.png"
-            alt={`wheel-pan`} 
-            className={`h-full w-auto object-contain`} 
-          /> */}
+          {/* Placeholder for wheel pan image */}
         </div>
         <div className={`wheel`}>
           <div className="wheel-segments w-full h-full">
@@ -99,27 +90,23 @@ const Spin: React.FC = () => {
             />
           </div>
         </div>
-        <img src='/img/pin_red.png' 
-            alt={`wheel-needle`} className={`needle z-20`} />
+        <img src='/img/pin_red.png' alt={`wheel-needle`} className={`needle z-20`} />
       </div>
 
       {/* State Section */}
-      <div className="flex justify-around items-center w-full max-w-md mx-auto">
-        {/* Keys Section */}
+      <div className="flex justify-around items-center w-full max-w-md mx-auto mb-4">
         <div className="flex flex-col items-center text-center">
           <h2 className="font-bold">Keys</h2>
           <img src="/img/key.png" alt="Key" className="w-16 h-16 my-2" />
           <span className="text-xl">{keysCount}</span>
         </div>
 
-        {/* Fragments Section */}
-          <div className="flex flex-col items-center text-center">
-            <h2 className="font-bold">Fragments</h2>
-            <img src="/img/fragment.png" alt="Fragment" className="w-16 h-16 my-2" />
-            <span className="text-xl">{fragmentsCount || 0}</span>
-          </div>
+        <div className="flex flex-col items-center text-center">
+          <h2 className="font-bold">Fragments</h2>
+          <img src="/img/fragment.png" alt="Fragment" className="w-16 h-16 my-2" />
+          <span className="text-xl">{fragmentsCount || 0}</span>
+        </div>
       </div>
-      
     </div>
   );
 };
