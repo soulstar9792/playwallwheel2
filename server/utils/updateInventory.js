@@ -5,6 +5,7 @@ const { use } = require('../routes/auth');
 
 // Update inventory based on the selected reward
 async function updateInventory(userId, type, amount) {
+    console.log('updateInventory', userId, type, amount);
     // Check if the provided type exists in the rewards
     if (!rewards[type]) {
         return;
@@ -58,8 +59,6 @@ async function updateInventory(userId, type, amount) {
             userRecord.inventory.playBucksTokens += amount;
             break;
     }
-    // Add items to the user's inventory based on the item type
-    userRecord.inventory[`${type}Keys`] += amount; // adds a certain amount of the item type
     await userRecord.save();
     return userRecord;
 }
