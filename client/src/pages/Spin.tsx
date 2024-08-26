@@ -112,13 +112,11 @@ const Spin: React.FC = () => {
         </div>
 
         {/* Fragments Section */}
-        {fragmentsCount > 0 && (
           <div className="flex flex-col items-center text-center">
             <h2 className="font-bold">Fragments</h2>
             <img src="/img/fragment.png" alt="Fragment" className="w-16 h-16 my-2" />
-            <span className="text-xl">{fragmentsCount}</span>
+            <span className="text-xl">{fragmentsCount || 0}</span>
           </div>
-        )}
       </div>
       
     </div>
