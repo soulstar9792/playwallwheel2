@@ -31,7 +31,7 @@ const Spin: React.FC = () => {
       setTimeout(() => {
         setIsSpinning(false);
         // Show success message with toastr
-        toastr.success(message, "Spin Result");
+        alert(message); 
       }, 8000);
     } catch (error) {
       console.error('Error during spin:', error);
