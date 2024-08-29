@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios'; // Import axios for API calls
-import { useSelector } from 'react-redux'; // Import useSelector
+import { useDispatch, useSelector } from 'react-redux'; // Import useSelector
 import toastr from 'toastr'; // Import toastr for notifications
 import 'toastr/build/toastr.min.css';
 import { setUserData } from '../slices/userSlice';
@@ -11,6 +11,7 @@ const Spin: React.FC = () => {
   const { type } = useParams<{ type?: string }>();
   const [isSpinning, setIsSpinning] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch(); // Create dispatch instance
 
   const user = useSelector((state: any) => state.user);
 
@@ -33,7 +34,7 @@ const Spin: React.FC = () => {
 
       setTimeout(() => {
         setIsSpinning(false);
-        setUserData(newUser);
+        dispatch(setUserData(newUser));
         // Show success message with toastr
         alert(message);
       }, 8000);
