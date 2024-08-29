@@ -27,7 +27,7 @@ router.post('/', async (req, res) => {
     
     // Get the angle based on the random reward index
     const randomAngle = 3600 + randomRewardIndex * 30 + Math.floor(Math.random() * 30);
-    const user = await updateInventory(userId, selectedReward.type, selectedReward.amount);
+    const user = await updateInventory(userId, type, selectedReward.type, selectedReward.amount);
 
     // Respond with the score, angle, and the selected reward
     res.json({ 

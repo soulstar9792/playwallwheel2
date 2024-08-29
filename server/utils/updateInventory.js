@@ -4,7 +4,7 @@ const rewards = require('../const/reward.json'); // Import rewards JSON
 const { use } = require('../routes/auth');
 
 // Update inventory based on the selected reward
-async function updateInventory(userId, type, amount) {
+async function updateInventory(userId, type, rewardType, rewardAmount) {
     console.log('updateInventory', userId, type, amount);
     // Check if the provided type exists in the rewards
     if (!rewards[type]) {
@@ -17,33 +17,33 @@ async function updateInventory(userId, type, amount) {
         userRecord = new User(userId);
     }
 
-    switch (type) {
+    switch (rewardType) {
         case 'common_key_fragment':
-            userRecord.inventory.commonKeyFragments += amount;
+            userRecord.inventory.commonKeyFragments += rewardAmount;
             break;
         case 'uncommon_key_fragment':
-            userRecord.inventory.uncommonKeyFragments += amount;
+            userRecord.inventory.uncommonKeyFragments += rewardAmount;
             break;
         case 'rare_key_fragment':
-            userRecord.inventory.rareKeyFragments += amount;
-            break;
+            userRecord.inventory.rareKeyFragments += rewardAmount;
+            break;    
         case 'legendary_key_fragment':
-            userRecord.inventory.legendaryKeyFragments += amount;
+            userRecord.inventory.legendaryKeyFragments += rewardAmount;
             break;
         case 'mythic_key_fragment':
-            userRecord.inventory.mythicKeyFragments += amount;
+            userRecord.inventory.mythicKeyFragments += rewardAmount;
             break;
         case 'coin':
-            userRecord.inventory.communityCoins += amount;
+            userRecord.inventory.communityCoins += rewardAmount;
             break;
         case 'friend_reroll':
-            userRecord.inventory.friendRerolls += amount;
+            userRecord.inventory.friendRerolls += rewardAmount;
             break;
         case 'usdp_token':
-            userRecord.inventory.usdpTokens += amount;
+            userRecord.inventory.usdpTokens += rewardAmount;
             break;
         case 'temp_luck_boost':
-            userRecord.inventory.tempLuckBoost += amount;
+            userRecord.inventory.tempLuckBoost += rewardAmount;
             break;
         case 'key_box':
             userRecord.inventory.commonKeys += 1;
@@ -53,10 +53,10 @@ async function updateInventory(userId, type, amount) {
             userRecord.inventory.mythicKeys += 2;
             break;
         case 'vip_role':
-            userRecord.inventory.vipRoles >= 1 ? userRecord.inventory.vipRoles : userRecord.inventory.vipRoles += amount;
+            userRecord.inventory.vipRoles >= 1 ? userRecord.inventory.vipRoles : userRecord.inventory.vipRoles += rewardAmount;
             break;
         case 'playbucks_token':
-            userRecord.inventory.playBucksTokens += amount;
+            userRecord.inventory.playBucksTokens += rewardAmount;
             break;
     }
     await userRecord.save();
