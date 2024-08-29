@@ -91,7 +91,7 @@ client.on('interactionCreate', async interaction => {
             }
 
             // Add coins to the user's balance
-            userRecord.inventory.communityCoinss += coinsToAdd;
+            userRecord.inventory.communityCoins += coinsToAdd;
             await userRecord.save();
 
             // Disable the button after claiming the gift
