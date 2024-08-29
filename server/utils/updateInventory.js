@@ -5,7 +5,7 @@ const { use } = require('../routes/auth');
 
 // Update inventory based on the selected reward
 async function updateInventory(userId, type, rewardType, rewardAmount) {
-    console.log('updateInventory', userId, type, amount);
+    console.log('updateInventory', userId, type,rewardType, rewardAmount);
     // Check if the provided type exists in the rewards
     if (!rewards[type]) {
         return;
@@ -17,6 +17,7 @@ async function updateInventory(userId, type, rewardType, rewardAmount) {
         userRecord = new User(userId);
     }
 
+    userRecord.inventory[`${rewardType}Keys`] -= 1;
     switch (rewardType) {
         case 'common_key_fragment':
             userRecord.inventory.commonKeyFragments += rewardAmount;
