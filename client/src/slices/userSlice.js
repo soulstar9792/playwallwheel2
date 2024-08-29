@@ -53,6 +53,7 @@ const userSlice = createSlice({
   },
   reducers: {
     setUserData: (state, action) => {
+      console.log('setUserData', action.payload);
       return {
         ...state,
         ...action.payload,

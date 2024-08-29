@@ -17,7 +17,7 @@ async function updateInventory(userId, type, rewardType, rewardAmount) {
         userRecord = new User(userId);
     }
 
-    userRecord.inventory[`${rewardType}Keys`] -= 1;
+    userRecord.inventory[`${type}Keys`] -= 1;
     switch (rewardType) {
         case 'common_key_fragment':
             userRecord.inventory.commonKeyFragments += rewardAmount;
