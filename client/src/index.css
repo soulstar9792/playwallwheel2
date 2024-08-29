@@ -82,3 +82,14 @@ code {
     transform: rotate(var(--spin-end-angle));
   }
 }
+.inventory-item {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  transform: translateY(0);
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+  
+}
+.inventory-item:hover { 
+  transform: translateY(-3px);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}

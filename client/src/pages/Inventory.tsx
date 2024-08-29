@@ -37,27 +37,34 @@ const Inventory: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 bg-gradient-to-b from-orange-400 to-yellow-500">
-      <button onClick={() => navigate('/')} className="text-blue-500 mb-4">
-        Back
-      </button>
-      <h1 className="text-3xl font-bold text-center mb-8">Your Inventory</h1>
-      
+      <div className="flex justify-between items-center">
+        <button onClick={() => navigate('/')} className="text-blue-500 m-10">
+          Back
+        </button>
+        
       {/* Add Back to Spin Button if spinType is available */}
       {spinType && (
         <button
           onClick={() => navigate(`/spin/${spinType}`)} 
           className="bg-blue-500 text-white font-bold py-2 px-4 rounded mb-4"
         >
-          Back to {spinType.charAt(0).toUpperCase() + spinType.slice(1)} Spin
+          Back to Spin...
         </button>
       )}
+      </div>
+
+
+      
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold">Your Inventory</h1>
+      </div>
       {/* Create a grid for the columns */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
         {/* First Column: Coins and Tokens */}
         <div>
           <h2 className="text-xl font-semibold mb-4">Coins and Tokens</h2>
           {coinsAndTokens.map((item) => (
-            <div key={item.name} className="bg-white shadow-lg rounded-lg p-4 mb-4 flex items-center justify-between">
+            <div key={item.name} className="inventory-item border-2 border-solid	border-pink-200	shadow-lg rounded-lg p-4 mb-4 flex items-center justify-between">
               <div className="flex items-center">
                 <img src={item.icon} alt={item.name} className="w-12 h-12 mr-4" />
                 <span className="text-lg font-semibold">{item.name}</span>
@@ -71,7 +78,7 @@ const Inventory: React.FC = () => {
         <div>
           <h2 className="text-xl font-semibold mb-4">Keys</h2>
           {keys.map((item) => (
-            <div key={item.name} className="bg-white shadow-lg rounded-lg p-4 mb-4 flex items-center justify-between">
+            <div key={item.name} className="inventory-item border-2 border-solid	border-pink-200	shadow-lg rounded-lg p-4 mb-4 flex items-center justify-between">
               <div className="flex items-center">
                 <img src={item.icon} alt={item.name} className="w-12 h-12 mr-4" />
                 <span className="text-lg font-semibold">{item.name}</span>
@@ -85,7 +92,7 @@ const Inventory: React.FC = () => {
         <div>
           <h2 className="text-xl font-semibold mb-4">Fragments</h2>
           {fragments.map((item) => (
-            <div key={item.name} className="bg-white shadow-lg rounded-lg p-4 mb-4 flex items-center justify-between">
+            <div key={item.name} className="inventory-item border-2 border-solid	border-pink-200	shadow-lg rounded-lg p-4 mb-4 flex items-center justify-between">
               <div className="flex items-center">
                 <img src={item.icon} alt={item.name} className="w-12 h-12 mr-4" />
                 <span className="text-lg font-semibold">{item.name}</span>
