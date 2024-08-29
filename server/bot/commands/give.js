@@ -17,7 +17,7 @@ module.exports = {
     let giver = await User.findOne({ id: giverId });
     let receiver = await User.findOne({ id: targetUser.id });
 
-    if (!giver || giver.coins < amount) {
+    if (!giver || giver.inventory.communityCoinss < amount) {
       return interaction.reply('You do not have enough coins.');
     }
 
@@ -25,8 +25,8 @@ module.exports = {
       receiver = new User(targetUser); 
     }
 
-    giver.coins -= amount;
-    receiver.coins += amount;
+    giver.inventory.communityCoinss -= amount;
+    receiver.inventory.communityCoinss += amount;
 
     await giver.save();
     await receiver.save();

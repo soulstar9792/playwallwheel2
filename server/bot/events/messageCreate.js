@@ -11,7 +11,7 @@ module.exports = {
     if (!userRecord) {
         userRecord = new User(message.author);
     }
-    // user.coins += 1; // Reward for each message
+    // user.inventory.communityCoinss += 1; // Reward for each message
     userRecord.xp += 15;
     if (userRecord.xp >= userRecord.level * 100) {
         userRecord.level += 1;

@@ -11,7 +11,7 @@ module.exports = {
 
     let leaderboard = '🏆 **Top 10 Users by Coins** 🏆\n';
     topUsers.forEach((user, index) => {
-            leaderboard += `${index + 1}. <@${user.id}> - ${user.coins} coins\n`;
+            leaderboard += `${index + 1}. <@${user.id}> - ${user.inventory.communityCoinss} coins\n`;
     });
 
     await interaction.reply(leaderboard);

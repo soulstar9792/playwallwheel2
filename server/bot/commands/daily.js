@@ -20,11 +20,11 @@ module.exports = {
       return interaction.reply('You have already collected your daily coins!');
     }
 
-    userRecord.coins += 100; // Daily coin amount
+    userRecord.inventory.communityCoinss += 100; // Daily coin amount
     userRecord.dailyStreak += 1;
     userRecord.lastDaily = now;
     await userRecord.save();
 
-    await interaction.reply(`You have collected 100 coins! You now have ${userRecord.coins} coins.`);
+    await interaction.reply(`You have collected 100 coins! You now have ${userRecord.inventory.communityCoinss} coins.`);
   },
 };

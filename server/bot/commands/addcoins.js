@@ -38,7 +38,7 @@ module.exports = {
         }
 
         // Add coins to the user's balance
-        userRecord.coins += amount;
+        userRecord.inventory.communityCoinss += amount;
         await userRecord.save();
 
         // Send confirmation message

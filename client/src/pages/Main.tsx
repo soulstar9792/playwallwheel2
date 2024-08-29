@@ -7,7 +7,7 @@ import 'toastr/build/toastr.min.css';
 
 const Main: React.FC = () => {
   const navigate = useNavigate();
-  const coins = useSelector((state: RootState) => state.user.coins);
+  const coins = useSelector((state: RootState) => state.user.inventory.communityCoins);
   const isMember = useSelector((state: RootState) => state.user.id ? true : false);
 
   // Sample wheels data

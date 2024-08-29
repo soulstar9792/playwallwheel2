@@ -15,7 +15,7 @@ module.exports = {
         await userRecord.save();
     }
 
-    await interaction.reply(`${interaction.user.username}, you have ${userRecord.coins} coins.`);
+    await interaction.reply(`${interaction.user.username}, you have ${userRecord.inventory.communityCoinss} coins.`);
   },
 };
 
