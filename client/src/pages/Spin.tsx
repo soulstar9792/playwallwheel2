@@ -1,9 +1,9 @@
 // client/src/pages/Spin.tsx
 import React, { useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios'; // Import axios for API calls
-import { useDispatch, useSelector } from 'react-redux'; // Import useSelector
-import toastr from 'toastr'; // Import toastr for notifications
+import axios from 'axios'; 
+import { useDispatch, useSelector } from 'react-redux';
+import toastr from 'toastr'; 
 import 'toastr/build/toastr.min.css';
 import { setUserData } from '../slices/userSlice';
 
@@ -11,7 +11,7 @@ const Spin: React.FC = () => {
   const { type } = useParams<{ type?: string }>();
   const [isSpinning, setIsSpinning] = useState(false);
   const navigate = useNavigate();
-  const dispatch = useDispatch(); // Create dispatch instance
+  const dispatch = useDispatch();
 
   const user = useSelector((state: any) => state.user);
 
@@ -35,7 +35,6 @@ const Spin: React.FC = () => {
       setTimeout(() => {
         setIsSpinning(false);
         dispatch(setUserData(newUser));
-        // Show success message with toastr
         alert(message);
       }, 8000);
     } catch (error) {
@@ -76,9 +75,15 @@ const Spin: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col bg-gray-100 bg-gradient-to-b from-orange-400 to-yellow-500" style={{ height: '100vh' }}>
-      <div className="flex justify-start">
+      <div className="flex justify-between items-center">
         <button onClick={() => navigate('/')} className="text-blue-500 m-10">
           Back
+        </button>
+        <button 
+          onClick={() => navigate('/inventory', { state: { type } })} 
+          className="bg-blue-500 text-white font-bold py-2 px-4 rounded m-10"
+        >
+          Inventory
         </button>
       </div>
       <div className="text-center">
