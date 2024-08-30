@@ -1,6 +1,7 @@
 // server/utils/updateInventory.js
 const User = require('../models/User');
 const rewards = require('../const/reward.json'); // Import rewards JSON
+const wheeltypes = require('../const/wheeltypes.json');
 const { use } = require('../routes/auth');
 
 // Update inventory based on the selected reward
@@ -18,21 +19,30 @@ async function updateInventory(userId, type, rewardType, rewardAmount) {
     }
 
     userRecord.inventory[`${type}Keys`] -= 1;
+    if(type != 'mythic') {
+        let nextType = wheeltypes[wheeltypes.indexOf(type) + 1];
+        userRecord.inventory[`${nextType}KeyFragments`] += 1;
+    }
     switch (rewardType) {
-        case 'common_key_fragment':
-            userRecord.inventory.commonKeyFragments += rewardAmount;
-            break;
         case 'uncommon_key_fragment':
             userRecord.inventory.uncommonKeyFragments += rewardAmount;
+            userRecord.inventory.uncommonKeys += Math.floor(userRecord.inventory.uncommonKeyFragments / 10);
+            userRecord.inventory.uncommonKeyFragments = userRecord.inventory.uncommonKeyFragments % 10;
             break;
         case 'rare_key_fragment':
             userRecord.inventory.rareKeyFragments += rewardAmount;
+            userRecord.inventory.rareKeys += Math.floor(userRecord.inventory.rareKeyFragments / 10);
+            userRecord.inventory.rareKeyFragments = userRecord.inventory.rareKeyFragments % 10;
             break;    
         case 'legendary_key_fragment':
             userRecord.inventory.legendaryKeyFragments += rewardAmount;
+            userRecord.inventory.legendaryKeys += Math.floor(userRecord.inventory.legendaryKeyFragments / 10);
+            userRecord.inventory.legendaryKeyFragments = userRecord.inventory.legendaryKeyFragments % 10;
             break;
         case 'mythic_key_fragment':
             userRecord.inventory.mythicKeyFragments += rewardAmount;
+            userRecord.inventory.legendaryKeys += Math.floor(userRecord.inventory.legendaryKeyFragments / 10);
+            userRecord.inventory.legendaryKeyFragments = userRecord.inventory.legendaryKeyFragments % 10;
             break;
         case 'coin':
             userRecord.inventory.communityCoins += rewardAmount;
