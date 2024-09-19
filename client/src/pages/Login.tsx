@@ -70,7 +70,7 @@ const Login: React.FC = () => {
             Join with Discord
           </button>
           <a
-            href="https://discord.gg/zuFnrqRM"
+            href="https://discord.gg/r9x4M8w3gK"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white underline"
